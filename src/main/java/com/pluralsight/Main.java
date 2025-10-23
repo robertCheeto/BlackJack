@@ -1,6 +1,5 @@
 package com.pluralsight;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -23,11 +22,7 @@ public class Main {
         System.out.println("Player 2 - DRAW!");
         int score2 = player2Hand(deck);
 
-        // Take turns and allow each player to choose if they want to Hit
-        // to take another card, or to Stay.
-
         calculate(score1, score2, player1, player2);
-
     }
 
     public static void welcomeMessage() {
@@ -98,7 +93,7 @@ public class Main {
                 System.out.printf("%s's score of %d is higher than %s's score of %d.\n%s Wins!", player1, score1, player2,score2, player1);
             }
             else if (score1 == score2) {
-                System.out.printf("%s's score of %d is the same as %s's score of %d.\nIt's a Draw!", player1, score1, player2,score2, player1);
+                System.out.printf("%s's score of %d is the same as %s's score of %d.\nIt's a Draw!", player1, score1, player2,score2);
             }
             else {
                 System.out.printf("%s's score of %d is higher than %s's score of %d.\n%s Wins!", player2, score2, player1,score1, player2);
