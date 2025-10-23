@@ -18,6 +18,9 @@ public class Main {
         int score1 = player1Hand(deck);
         int score2 = player2Hand(deck);
 
+        // Take turns and allow each player to choose if they want to Hit
+        // to take another card, or to Stay.
+
         calculate(score1, score2, player1, player2);
 
     }
@@ -113,8 +116,10 @@ public class Main {
             else {
                 System.out.printf("%s's score of %d is higher than %s's score of %d.\n%s Wins!", player2, score2, player1,score1, player2);
             }
+        } else if (score1 > 21 && score2 > 21) {
+            System.out.println("Both players went over 21 and LOSE!");
         }
-        else if ((score1 > 21) && (score2 <= 21)) {
+        else if ((score1 > 21)) {
             System.out.printf("%s's score of %d is over 21. \n%s Wins!", player1, score1, player2);
         }
         else {
