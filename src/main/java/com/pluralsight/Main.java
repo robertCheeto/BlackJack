@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
-    public static Scanner keyboard = new Scanner(System.in);
+    static Scanner keyboard = new Scanner(System.in);
+    static boolean isRunning = true;
 
     public static void main(String[] args) {
         Deck deck = new Deck();
@@ -13,9 +14,13 @@ public class Main {
         String player1 = player1Name(keyboard);
         String player2 = player2Name(keyboard);
 
-        System.out.printf("\nWelcome %s & %s to the table.\n\n", player1, player2);
+        System.out.printf("\nWelcome %s & %s to the table.\n", player1, player2);
 
+        System.out.println("Player 1 - DRAW!");
         int score1 = player1Hand(deck);
+
+        System.out.println();
+        System.out.println("Player 2 - DRAW!");
         int score2 = player2Hand(deck);
 
         // Take turns and allow each player to choose if they want to Hit
@@ -58,31 +63,41 @@ public class Main {
 
         int handValue = hand1.getValue();
 
-        System.out.printf("Your current hand is worth %d points.\n", handValue);
 
-        System.out.print("Do you want to hit or stay? (Y/N)");
-        String userInput = keyboard.nextLine().toLowerCase().trim();
+        while (isRunning) {
 
-        if (userInput.contains("y")) {
-            Card card = deck.deal();
-            card.flip();
-            hand1.deal(card);
-            System.out.println("You drew a " + card.getValue() + " of " + card.getSuit());
+            System.out.printf("Your current hand is worth %d points.\n", handValue);
+            System.out.println();
+            System.out.print("Do you want to hit or stay? (Y/N) ");
+            String userInput = keyboard.nextLine().toLowerCase().trim();
 
+            if (userInput.contains("y")) {
+                Card card = deck.deal();
+                card.flip();
+                hand1.deal(card);
+                System.out.println("You drew a " + card.getValue() + " of " + card.getSuit());
+
+            } else if (userInput.contains("n")) {
+                isRunning = false;
+                System.out.println("You are staying at " + handValue);
+            }
+            else {
+                System.out.println("Invalid input.");
+            }
+
+            System.out.println();
+
+            int handValue2 = handValue + hand1.getValue();
+            System.out.println("Total points after calculation: " + handValue2);
+            System.out.println();
+
+            return handValue2;
         }
-        else if (userInput.contains("n")) {
-            System.out.println("You're staying where you're at.");
-        }
-        else {
-            System.out.println("Invalid input.");
-        }
 
-        System.out.println("Your new hand value is " + hand1.getValue());
         System.out.println();
+        System.out.println("You're staying where you're at.");
 
-        int handValue2 = handValue + hand1.getValue();
-
-        return handValue2;
+        return handValue;
     }
 
     public static int player2Hand(Deck deck) {
@@ -126,21 +141,5 @@ public class Main {
             System.out.printf("%s's score of %d is over 21. \n%s Wins!", player2, score2, player1);
         }
     }
-
-//    public static void hitOrStay() {
-//        System.out.print("Do you want to hit or stay? (Y/N)");
-//        String userInput = keyboard.nextLine().toLowerCase().trim();
-//
-//        if (userInput.contains("y")) {
-//            hand.deal();
-//        }
-//        else if (userInput.contains("n")) {
-//            System.out.println("You're staying where you're at.");
-//        }
-//        else {
-//            System.out.println("Invalid input.");
-//        }
-//
-//    }
 
 }
