@@ -63,7 +63,8 @@ public class Main {
 
         int handValue = hand1.getValue();
 
-//        hitOrStand(deck,handValue);
+        System.out.printf("Player One's hand is worth %d points.\n\n", handValue);
+
         handValue = hitOrStand(deck, handValue);
 
         return handValue;
@@ -84,6 +85,8 @@ public class Main {
         int handValue = hand2.getValue();
 
         System.out.printf("Player Two's hand is worth %d points.\n\n", handValue);
+
+        handValue = hitOrStand(deck, handValue);
 
         return handValue;
     }
@@ -137,6 +140,7 @@ public class Main {
             System.out.println();
 
             int handValue2 = handValue + hand1.getValue();
+
             System.out.println("Total points after calculation: " + handValue2);
             System.out.println();
 
