@@ -84,7 +84,7 @@ public class Main {
 
         int handValue = hand2.getValue();
 
-        System.out.printf("Player Two's hand is worth %d points.\n\n", handValue);
+        System.out.printf("Player Two's hand is worth %d points.\n", handValue);
 
         handValue = hitOrStand(deck, handValue);
 
@@ -118,10 +118,11 @@ public class Main {
         Hand hand1 = new Hand();
         int handValue = handScore;
 
-        System.out.print("Do you want to hit or stay? (Y/N) ");
-        String userInput = keyboard.nextLine().toLowerCase().trim();
-
         while (isRunning) {
+
+            System.out.print("Do you want to hit or stay? (Y/N) ");
+            String userInput = keyboard.nextLine().toLowerCase().trim();
+
             switch (userInput) {
                 case ("y"):
                     Card card = deck.deal();
@@ -137,14 +138,15 @@ public class Main {
                     break;
             }
         }
-            System.out.println();
+        isRunning = true;
+        System.out.println();
 
-            int handValue2 = handValue + hand1.getValue();
+        int handValue2 = handValue + hand1.getValue();
 
-            System.out.println("Total points after calculation: " + handValue2);
-            System.out.println();
+        System.out.println("Total points after calculation: " + handValue2);
+        System.out.println();
 
-            return handValue2;
-        }
+        return handValue2;
+    }
 
 }
