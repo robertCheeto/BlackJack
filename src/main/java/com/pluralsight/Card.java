@@ -16,7 +16,7 @@ public class Card {
             return suit;
         }
         else {
-            return "";
+            return "Card is faced down";
         }
     }
 
@@ -33,7 +33,8 @@ public class Card {
         if (isFaceUp) {
             if (value.equals("A")) {
                 return 11;
-            } else if (value.equals("K") || value.equals("Q") || value.equals("J")) {
+            }
+            else if (value.equals("K") || value.equals("Q") || value.equals("J")) {
                 return 10;
             }
             else {
