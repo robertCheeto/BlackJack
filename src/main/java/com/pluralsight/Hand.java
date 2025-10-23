@@ -21,7 +21,7 @@ public class Hand {
         int value = 0;
 
         for(Card card: cards) {
-            card.flip();
+            //card.flip();
             value += card.getPointValue();
             card.flip();
         }
