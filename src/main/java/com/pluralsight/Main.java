@@ -13,13 +13,16 @@ public class Main {
         String player1 = player1Name(keyboard);
         String player2 = player2Name(keyboard);
 
-        System.out.printf("\nWelcome %s & %s to the table.\n", player1, player2);
-        player1Hand(deck);
-        player2Hand(deck);
+        System.out.printf("\nWelcome %s & %s to the table.\n\n", player1, player2);
+
+        int score1 = player1Hand(deck);
+        int score2 = player2Hand(deck);
+
+        calculate(score1, score2, player1, player2);
 
     }
 
-    public static void player1Hand(Deck deck) {
+    public static int player1Hand(Deck deck) {
         Hand hand1 = new Hand();
         deck.shuffle();
 
@@ -35,9 +38,10 @@ public class Main {
 
         System.out.printf("\nPlayer One's hand is worth %d points.\n\n", handValue);
 
+        return handValue;
     }
 
-    public static void player2Hand(Deck deck) {
+    public static int player2Hand(Deck deck) {
         Hand hand2 = new Hand();
         deck.shuffle();
 
@@ -53,6 +57,7 @@ public class Main {
 
         System.out.printf("\nPlayer Two's hand is worth %d points.\n\n", handValue);
 
+        return handValue;
     }
 
     public static void welcomeMessage() {
@@ -74,7 +79,26 @@ public class Main {
         return player2;
     }
 
-    public static void calculate() {
+    public static void calculate(int score1, int score2, String player1, String player2) {
 
+        if ((score1 <= 21) && (score2 <= 21)) {
+            if (score1 > score2) {
+                System.out.printf("%s's score of %d is higher than %s's score of %d.\n%s Wins!", player1, score1, player2,score2, player1);
+            }
+            else if (score1 == score2) {
+                System.out.printf("%s's score of %d is the same as %s's score of %d.\nIt's a Draw!", player1, score1, player2,score2, player1);
+            }
+            else {
+                System.out.printf("%s's score of %d is higher than %s's score of %d.\n%s Wins!", player2, score2, player1,score1, player2);
+            }
+        }
+        else if ((score1 > 21) && (score2 <= 21)) {
+            System.out.printf("%s's score of %d over 21. \n%s Wins!", player1, score1, player2);
+        }
+        else {
+            System.out.printf("%s's score of %d over 21. \n%s Wins!", player2, score2, player1);
+        }
     }
+
+
 }
