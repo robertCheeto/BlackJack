@@ -25,7 +25,7 @@ public class Card {
             return value;
         }
         else {
-            return "";
+            return "Card is faced down";
         }
     }
 
