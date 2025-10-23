@@ -10,11 +10,8 @@ public class Main {
         Deck deck = new Deck();
 
         welcomeMessage();
-
-        System.out.print("Player One, please enter your name: ");
-        String player1 = keyboard.nextLine();
-        System.out.print("Player Two, please enter your name: ");
-        String player2 = keyboard.nextLine();
+        String player1 = player1Name(keyboard);
+        String player2 = player2Name(keyboard);
 
         System.out.printf("\nWelcome %s & %s to the table.\n", player1, player2);
         player1Hand(deck);
@@ -31,9 +28,7 @@ public class Main {
             card.flip();
             hand1.deal(card);
 
-            System.out.println("The card is faced up: " + card.isFaceUp());
-            System.out.print(card.getPointValue());
-            System.out.println(" " + card.getSuit());
+            System.out.println(card.getValue() + " " + card.getSuit());
         }
 
         int handValue = hand1.getValue();
@@ -51,9 +46,7 @@ public class Main {
             card.flip();
             hand2.deal(card);
 
-            System.out.println("The card is faced up: " + card.isFaceUp());
-            System.out.print(card.getPointValue());
-            System.out.println(" " + card.getSuit());
+            System.out.println(card.getValue() + " " + card.getSuit());
         }
 
         int handValue = hand2.getValue();
@@ -64,7 +57,24 @@ public class Main {
 
     public static void welcomeMessage() {
         System.out.println("Welcome to Rivers!");
+        System.out.println("Tonight, we are playing Blackjack, or as the kids say, Twenty One!\n");
     }
 
+    public static String player1Name(Scanner keyboard) {
+        System.out.print("Player One, please enter your name: ");
+        String player1 = keyboard.nextLine();
 
+        return player1;
+    }
+
+    public static String player2Name(Scanner keyboard) {
+        System.out.print("Player Two, please enter your name: ");
+        String player2 = keyboard.nextLine();
+
+        return player2;
+    }
+
+    public static void calculate() {
+
+    }
 }
