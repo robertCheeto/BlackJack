@@ -129,6 +129,11 @@ public class Main {
                     card.flip();
                     hand1.deal(card);
                     System.out.println("You drew a " + card.getValue() + " of " + card.getSuit());
+
+                    if ((card.getPointValue() + handScore) > 21) {
+                        System.out.println("Oh no! You went over 21!");
+                        isRunning = false;
+                    }
                     break;
                 case ("n"):
                     isRunning = false;
