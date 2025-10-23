@@ -63,39 +63,8 @@ public class Main {
 
         int handValue = hand1.getValue();
 
-
-        while (isRunning) {
-
-            System.out.printf("Your current hand is worth %d points.\n", handValue);
-            System.out.println();
-            System.out.print("Do you want to hit or stay? (Y/N) ");
-            String userInput = keyboard.nextLine().toLowerCase().trim();
-
-            if (userInput.contains("y")) {
-                Card card = deck.deal();
-                card.flip();
-                hand1.deal(card);
-                System.out.println("You drew a " + card.getValue() + " of " + card.getSuit());
-
-            } else if (userInput.contains("n")) {
-                isRunning = false;
-                System.out.println("You are staying at " + handValue);
-            }
-            else {
-                System.out.println("Invalid input.");
-            }
-
-            System.out.println();
-
-            int handValue2 = handValue + hand1.getValue();
-            System.out.println("Total points after calculation: " + handValue2);
-            System.out.println();
-
-            return handValue2;
-        }
-
-        System.out.println();
-        System.out.println("You're staying where you're at.");
+//        hitOrStand(deck,handValue);
+        handValue = hitOrStand(deck, handValue);
 
         return handValue;
     }
@@ -141,5 +110,37 @@ public class Main {
             System.out.printf("%s's score of %d is over 21. \n%s Wins!", player2, score2, player1);
         }
     }
+
+    public static int hitOrStand(Deck deck, int handScore) {
+        Hand hand1 = new Hand();
+        int handValue = handScore;
+
+        System.out.print("Do you want to hit or stay? (Y/N) ");
+        String userInput = keyboard.nextLine().toLowerCase().trim();
+
+        while (isRunning) {
+            switch (userInput) {
+                case ("y"):
+                    Card card = deck.deal();
+                    card.flip();
+                    hand1.deal(card);
+                    System.out.println("You drew a " + card.getValue() + " of " + card.getSuit());
+                    break;
+                case ("n"):
+                    isRunning = false;
+                    break;
+                default:
+                    System.out.println("Invalid input.");
+                    break;
+            }
+        }
+            System.out.println();
+
+            int handValue2 = handValue + hand1.getValue();
+            System.out.println("Total points after calculation: " + handValue2);
+            System.out.println();
+
+            return handValue2;
+        }
 
 }
